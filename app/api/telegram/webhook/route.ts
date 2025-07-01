@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
   if (!chatId || !text) return new Response('No message', { status: 200 });
 
   const reply = text === '/start'
-    ? '👋 Welcome to AhmadTaji Bot!'
+    ? '👋 Welcome to AhmadTaji Bot!,can i help you?'
     : `You said: ${text}`;
 
   await fetch(`${TELEGRAM_API}/sendMessage`, {
