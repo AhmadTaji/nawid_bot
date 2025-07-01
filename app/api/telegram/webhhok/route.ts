@@ -1,16 +1,16 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+// app/api/telegram/webhook/route.ts
+import { NextRequest } from 'next/server';
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
 const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_TOKEN}`;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') return res.status(405).end();
-
-  const message = req.body.message;
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  const message = body.message;
   const chatId = message?.chat?.id;
   const text = message?.text?.toLowerCase();
 
-  if (!chatId || !text) return res.status(200).end();
+  if (!chatId || !text) return new Response('No message', { status: 200 });
 
   let reply = '';
 
@@ -28,5 +28,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     body: JSON.stringify({ chat_id: chatId, text: reply }),
   });
 
-  res.status(200).end();
+  return new Response('OK', { status: 200 });
 }
