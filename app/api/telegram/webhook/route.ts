@@ -221,11 +221,7 @@ export async function POST(req: NextRequest) {
       ? `⏳ User has been banned for ${durationMinutes} minutes.`
       : `❌ Failed to temporarily ban user.`;
   } else if (command === '/remove_all') {
-    const adminsRes = await fetch(`${TELEGRAM_API}/getChatAdministrators?chat_id=${chatId}`);
-    const { result: admins } = await adminsRes.json();
-    const adminIds = admins.map((a: any) => a.user.id);
-
-    // You must track users manually to remove them here
+    // Placeholder: requires user tracking to implement
     reply = '⚠️ This command requires user tracking to remove all non-admins.';
   } else {
     reply = `❓ Unknown command. Try /products, /kick, /ban, or /tempban <minutes>`;
