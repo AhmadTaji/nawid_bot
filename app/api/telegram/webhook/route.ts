@@ -164,6 +164,7 @@
 
 
 // app/api/telegram/webhook/route.ts
+// app/api/telegram/webhook/route.ts
 import { NextRequest } from 'next/server';
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
