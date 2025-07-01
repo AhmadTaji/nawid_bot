@@ -216,7 +216,7 @@ export async function POST(req: NextRequest) {
         until_date: untilDate,
       }),
     });
-
+//     // Temporarily ban the user for the specified duration
     reply = restrictRes.ok
       ? `⏳ User has been banned for ${durationMinutes} minutes.`
       : `❌ Failed to temporarily ban user.`;
